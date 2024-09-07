@@ -3,7 +3,6 @@ import "../css/Sidebar.css";
 import {
   FaTimes,
   FaSearch,
-  FaPlus,
   FaChevronDown,
   FaShoppingCart,
   FaChevronRight,
@@ -13,6 +12,8 @@ import {
   FaInstagram,
   FaTiktok,
 } from "react-icons/fa";
+import { IoMdClose } from "react-icons/io";
+import { FaPlus } from "react-icons/fa6";
 
 interface SidebarProps {
   sidebarOpen: boolean;
@@ -92,7 +93,7 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, toggleSidebar }) => {
               className="more"
               onClick={(e) => handleToggle(e, subCategory.id)}
             >
-              <FaPlus />
+              <FaPlus size={28} />
             </div>
             <ul className="sub-subcategories">
               {renderSubCategories(subCategory.id)}
@@ -106,7 +107,7 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, toggleSidebar }) => {
   return (
     <>
       <div className={`sidebar ${sidebarOpen ? "open" : ""}`}>
-        <FaTimes className="fa-xmark" onClick={toggleSidebar} />
+        <IoMdClose className="fa-xmark" onClick={toggleSidebar} />
         {/* Sidebar content here */}
 
         <div className="search-bar">
@@ -120,13 +121,13 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, toggleSidebar }) => {
             required
           />
           <button>
-            <FaSearch size={18}/>
+            <FaSearch size={18} />
           </button>
         </div>
 
         <div className="info-container">
           <div className="info-bar">
-            <FaHeadset size={25}/>
+            <FaHeadset size={25} />
             <div className="info-text">
               <span className="info-subheading">Customer Support</span>
               <span className="info-heading">071 040 9000</span>
@@ -146,7 +147,7 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, toggleSidebar }) => {
           <li>
             <a href="shop.php">Shop</a>
             <div className="more">
-              <FaPlus/>
+              <FaPlus />
             </div>
           </li>
           <li className="cat">
@@ -177,13 +178,13 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, toggleSidebar }) => {
         <ul className="fixed">
           <li>
             <span className="icon-wishcart">
-              <FaHeart size={20}/>
+              <FaHeart size={20} />
             </span>
             <a href="wishlist.php">Wishlist</a>
           </li>
           <li>
             <span className="icon-wishcart">
-              <FaShoppingCart size={20}/>
+              <FaShoppingCart size={20} />
             </span>
             <a href="cart.php">Cart</a>
           </li>

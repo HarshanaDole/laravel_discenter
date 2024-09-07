@@ -1,5 +1,6 @@
+// components/FeaturedProducts.tsx
 import React from "react";
-import Image from "next/image";
+import ProductCard from "./ProductCard";
 import '../css/FeaturedProducts.css';
 
 interface Product {
@@ -29,68 +30,11 @@ const FeaturedProducts: React.FC<FeaturedProductsProps> = ({ products }) => {
       </div>
       <div className="featured-products-container">
         {products.map((product) => (
-          <div
+          <ProductCard
             key={product.id}
-            className={`product-card ${
-              product.availability === "out of stock" ? "out-of-stock" : ""
-            }`}
-          >
-            <form method="post">
-              <input type="hidden" name="pid" value={product.id} />
-              <input type="hidden" name="name" value={product.name} />
-              <input type="hidden" name="price" value={product.price} />
-              <input type="hidden" name="image" value={product.image_01} />
-              <input type="hidden" name="qty" value="1" />
-              <a
-                className={`image-container ${
-                  product.availability === "out of stock" ? "out-of-stock" : ""
-                }`}
-                href={`/product_view?pid=${product.id}`}
-              >
-                <Image
-                  src={`/uploaded_img/${product.image_01}`}
-                  alt={product.name}
-                  width={250}
-                  height={250}
-                />
-              </a>
-              <div className="details">
-                <span className="category-name">
-                  {getMainCategoryName(product.category)}
-                </span>
-                <a href={`/product_view?pid=${product.id}`}>
-                  <span className="product-name" title={product.name}>
-                    {product.name}
-                  </span>
-                </a>
-                <hr />
-                <div className="loop-btn">
-                  <span className="price">
-                    Rs. {product.price.toLocaleString()}
-                  </span>
-                  {product.availability === "out of stock" ? (
-                    <button
-                      className="btn"
-                      type="submit"
-                      name="out_of_stock"
-                      disabled
-                    >
-                      Out of Stock
-                    </button>
-                  ) : (
-                    <button className="option-btn" type="submit" name="add_to_cart">
-                      Add to Cart
-                    </button>
-                  )}
-                  <button
-                    className="heart-icon fa-regular fa-heart"
-                    type="submit"
-                    name="add_to_wishlist"
-                  ></button>
-                </div>
-              </div>
-            </form>
-          </div>
+            product={product}
+            getMainCategoryName={getMainCategoryName}
+          />
         ))}
       </div>
     </div>
